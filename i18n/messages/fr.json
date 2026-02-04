@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "pricing": "Tarifs",
+    "dashboard": "Tableau de bord",
+    "login": "Connexion",
+    "register": "Créer un compte",
+    "logout": "Déconnexion"
+  },
+  "hero": {
+    "title": "Traduction professionnelle, rapide et fiable.",
+    "subtitle": "Commandez une traduction humaine, avec assistance IA pour une qualité premium.",
+    "cta": "Créer une commande",
+    "cta2": "Voir les tarifs"
+  },
+  "features": {
+    "title": "Tout ce qu’il faut, de A à Z",
+    "f1": "Upload sécurisé de vos documents",
+    "f2": "Paiement en ligne (Stripe)",
+    "f3": "Suivi de commande + chat",
+    "f4": "Espace traducteur + assistant IA"
+  },
+  "pricing": {
+    "title": "Tarifs transparents",
+    "starter": "Standard",
+    "pro": "Express",
+    "note": "Les prix sont estimatifs. Le devis final dépend du volume et du type de document."
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Mot de passe",
+    "name": "Nom",
+    "role": "Rôle",
+    "client": "Client",
+    "translator": "Traducteur",
+    "submit": "Continuer"
+  },
+  "dashboard": {
+    "title": "Mes commandes",
+    "new": "Nouvelle commande",
+    "status": "Statut",
+    "total": "Total",
+    "open": "Ouvrir"
+  },
+  "order": {
+    "newTitle": "Nouvelle commande",
+    "sourceLang": "Langue source",
+    "targetLang": "Langue cible",
+    "category": "Catégorie",
+    "certified": "Traduction certifiée",
+    "express": "Express",
+    "words": "Estimation mots",
+    "notes": "Notes",
+    "create": "Créer et payer",
+    "detail": "Détail de la commande",
+    "chat": "Chat",
+    "send": "Envoyer"
+  }
+}

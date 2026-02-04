@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "pricing": "Pricing",
+    "dashboard": "Dashboard",
+    "login": "Sign in",
+    "register": "Create account",
+    "logout": "Sign out"
+  },
+  "hero": {
+    "title": "Professional translation, fast and reliable.",
+    "subtitle": "Order human translation with AI assistance for premium quality.",
+    "cta": "Create an order",
+    "cta2": "See pricing"
+  },
+  "features": {
+    "title": "Everything you need, end‑to‑end",
+    "f1": "Secure document upload",
+    "f2": "Online payment (Stripe)",
+    "f3": "Order tracking + chat",
+    "f4": "Translator workspace + AI assistant"
+  },
+  "pricing": {
+    "title": "Transparent pricing",
+    "starter": "Standard",
+    "pro": "Express",
+    "note": "Prices are indicative. Final quote depends on volume and document type."
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "role": "Role",
+    "client": "Client",
+    "translator": "Translator",
+    "submit": "Continue"
+  },
+  "dashboard": {
+    "title": "My orders",
+    "new": "New order",
+    "status": "Status",
+    "total": "Total",
+    "open": "Open"
+  },
+  "order": {
+    "newTitle": "New order",
+    "sourceLang": "Source language",
+    "targetLang": "Target language",
+    "category": "Category",
+    "certified": "Certified translation",
+    "express": "Express",
+    "words": "Word estimate",
+    "notes": "Notes",
+    "create": "Create & pay",
+    "detail": "Order detail",
+    "chat": "Chat",
+    "send": "Send"
+  }
+}

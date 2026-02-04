@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CLIENT
+  TRANSLATOR
+  ADMIN
+}
+
+enum OrderStatus {
+  DRAFT
+  PAID
+  ASSIGNED
+  IN_PROGRESS
+  DELIVERED
+  CLOSED
+  CANCELED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      Role     @default(CLIENT)
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders            Order[]            @relation("ClientOrders")
+  messages          Message[]
+  chats             ChatParticipant[]
+  translatorProfile TranslatorProfile?
+  aiRequests        AiRequest[]
+}
+
+model TranslatorProfile {
+  id          String  @id @default(cuid())
+  userId      String  @unique
+  languages   String
+  specialties String
+  ratePerWord Float   @default(0.12)
+  available   Boolean @default(true)
+  user        User    @relation(fields: [userId], references: [id])
+
+  assignments Order[] @relation("TranslatorAssignments")
+}
+
+model Order {
+  id           String      @id @default(cuid())
+  clientId     String
+  translatorId String?
+  status       OrderStatus @default(DRAFT)
+
+  sourceLang String
+  targetLang String
+  category   String
+  certified  Boolean @default(false)
+  express    Boolean @default(false)
+  notes      String?
+
+  wordsEstimate Int?
+  totalAmount   Int    @default(0)
+  currency      String @default("EUR")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  client     User               @relation("ClientOrders", fields: [clientId], references: [id])
+  translator TranslatorProfile? @relation("TranslatorAssignments", fields: [translatorId], references: [id])
+
+  files      File[]
+  chat       Chat?
+  payment    Payment?
+  aiRequests AiRequest[]
+}
+
+model File {
+  id        String   @id @default(cuid())
+  orderId   String
+  kind      String
+  filename  String
+  url       String
+  createdAt DateTime @default(now())
+
+  order Order @relation(fields: [orderId], references: [id])
+}
+
+model Chat {
+  id        String   @id @default(cuid())
+  orderId   String   @unique
+  createdAt DateTime @default(now())
+
+  order        Order             @relation(fields: [orderId], references: [id])
+  messages     Message[]
+  participants ChatParticipant[]
+}
+
+model ChatParticipant {
+  id     String @id @default(cuid())
+  chatId String
+  userId String
+
+  chat Chat @relation(fields: [chatId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([chatId, userId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  chatId    String
+  senderId  String
+  content   String
+  createdAt DateTime @default(now())
+
+  chat   Chat @relation(fields: [chatId], references: [id])
+  sender User @relation(fields: [senderId], references: [id])
+}
+
+model Payment {
+  id              String   @id @default(cuid())
+  orderId         String   @unique
+  stripeSessionId String?
+  status          String   @default("pending")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id])
+}
+
+model AiRequest {
+  id        String   @id @default(cuid())
+  orderId   String?
+  userId    String
+  type      String
+  prompt    String
+  result    String?
+  createdAt DateTime @default(now())
+
+  user  User   @relation(fields: [userId], references: [id])
+  order Order? @relation(fields: [orderId], references: [id])
+}
